@@ -5,6 +5,8 @@ static func get_velocity(speed):
 	velocity.y = -(Input.is_action_pressed("up") as int)+(Input.is_action_pressed("down") as int)
 	
 	velocity = velocity.normalized() * speed
+	velocity.x = ceil(velocity.x) if velocity.x > 0 else floor(velocity.x)
+	velocity.y = ceil(velocity.y) if velocity.y > 0 else floor(velocity.y)
 	
 	return velocity
 

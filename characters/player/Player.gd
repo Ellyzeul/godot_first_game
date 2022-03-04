@@ -19,6 +19,5 @@ func _process(delta):
 	update()
 
 func _draw():
-	var msg_position = velocity
-	msg_position.y -= 32
-	draw_string(font, msg_position, "X: "+str(velocity.x)+" | Y: "+str(velocity.y))
+	draw_string(font, Vector2(0, -32), "X: "+str(velocity.x)+" | Y: "+str(velocity.y))
+	draw_string(font, Vector2(0,-64), "X: "+str(position.x)+" | Y: "+str(position.y))
