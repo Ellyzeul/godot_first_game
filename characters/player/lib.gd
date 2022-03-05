@@ -18,7 +18,7 @@ static func get_running(sprint_time):
 	
 	return running
 
-static func get_sprint_delta(delta, last_delta):
+static func get_sprint_duration(delta, last_delta):
 	var new_delta
 	
 	if (
@@ -28,6 +28,11 @@ static func get_sprint_delta(delta, last_delta):
 	else: new_delta = 0
 	
 	return new_delta
+
+static func get_sprint_cooldown(cooldown, delta):
+	var new_cooldown = cooldown - delta if cooldown > 0 else 0
+	
+	return new_cooldown
 
 static func set_position(position, velocity):
 	position.x += velocity.x

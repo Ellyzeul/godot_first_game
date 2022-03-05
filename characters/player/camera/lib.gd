@@ -24,12 +24,13 @@ static func get_messages(world, player):
 		"Project:",
 		"  Fullscreen --- %s" % ["true" if OS.window_fullscreen else "false"],
 		"Player:",
-		"  Position ----- X: %d | Y: %d" % [player.position.x, player.position.y],
-		"  Deslocation -- X: %d | Y: %d" % [player.velocity.x, player.velocity.y],
-		"  Run Modifier - %2.1f" % [player.running],
-		"  Sprint delta - %f" % [player.sprint_duration],
+		"  Position --------- X: %d | Y: %d" % [player.position.x, player.position.y],
+		"  Deslocation ------ X: %d | Y: %d" % [player.velocity.x, player.velocity.y],
+		"  Run Modifier ----- %2.1f" % [player.running],
+		"  Sprint delta ----- %f" % [player.sprint_duration],
+		"  Sprint cooldown -- %f" % [player.sprint_cooldown],
 		"Items:",
-		"  Count -------- %d" % [item_count]
+		"  Count ------------ %d" % [item_count]
 	]
 	
 	for i in range(item_count):
