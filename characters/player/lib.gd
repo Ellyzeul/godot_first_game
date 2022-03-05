@@ -39,3 +39,16 @@ static func set_position(position, velocity):
 	position.y += velocity.y
 	
 	return position
+
+static func process_collisions(player, collisions):
+	var collision_name
+	
+	for collision in collisions:
+		collision_name = collision.name
+		
+		if collision_name.find("Item") != -1:
+			var item = collision
+			player.inventory.append(item)
+			collision.get_parent().remove_child(collision)
+			
+			continue

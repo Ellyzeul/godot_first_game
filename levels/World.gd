@@ -6,5 +6,5 @@ var items
 func _ready():
 	items = WorldModule.get_items(self)
 
-func _process(delta):
+func _process(_delta):
 	items = WorldModule.get_items(self)

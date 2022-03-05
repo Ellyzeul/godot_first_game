@@ -20,7 +20,7 @@ func _ready():
 	debug = false
 	top_left = PlayerCamera.get_top_left()
 
-func _process(delta):
+func _process(_delta):
 	debug = !debug if Input.is_action_just_pressed("debug") else debug
 	top_left = PlayerCamera.get_top_left()
 	PlayerCamera.toogle_fullscreen()

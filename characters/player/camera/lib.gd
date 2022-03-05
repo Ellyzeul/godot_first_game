@@ -15,10 +15,12 @@ static func toogle_fullscreen():
 	OS.set_window_fullscreen(new_fullscreen)
 
 static func get_messages(world, player):
-	var items = world.items
-	var item_count
+	var map_items = world.items
+	var map_items_count
+	var inventory = player.inventory
+	var inventory_count = inventory.size()
 	
-	item_count = items.size()
+	map_items_count = map_items.size()
 	
 	var messages = [
 		"Project:",
@@ -27,14 +29,22 @@ static func get_messages(world, player):
 		"  Position --------- X: %d | Y: %d" % [player.position.x, player.position.y],
 		"  Deslocation ------ X: %d | Y: %d" % [player.velocity.x, player.velocity.y],
 		"  Run Modifier ----- %2.1f" % [player.running],
-		"  Sprint delta ----- %f" % [player.sprint_duration],
+		"  Sprint duration -- %f" % [player.sprint_duration],
 		"  Sprint cooldown -- %f" % [player.sprint_cooldown],
-		"Items:",
-		"  Count ------------ %d" % [item_count]
+		"  Inventory:",
+		"    Count ---------- %d" % [inventory_count]
 	]
 	
-	for i in range(item_count):
-		messages.push_back("  Item%d:" % [i+1])
-		messages.push_back("    Position --- X: %d | Y: %d" % [items[i].position.x, items[i].position.y])
+	for item in player.inventory:
+		messages.append("    %s" % [item.name])
+	
+	messages.append_array([
+		"Items on map:",
+		"  Count ------------ %d" % [map_items_count]
+	])
+	
+	for item in map_items:
+		messages.append("  %s:" % [item.name])
+		messages.append("    Position --- X: %d | Y: %d" % [item.position.x, item.position.y])
 	
 	return messages
