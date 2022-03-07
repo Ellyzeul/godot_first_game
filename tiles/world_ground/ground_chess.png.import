@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player.png-a8fc4065ed304166a5922989fd4ac3ed.stex"
+path="res://.import/ground_chess.png-e92d6743b1d49ab155f8d111caf3cd33.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/player.png"
-dest_files=[ "res://.import/player.png-a8fc4065ed304166a5922989fd4ac3ed.stex" ]
+source_file="res://tiles/world_ground/ground_chess.png"
+dest_files=[ "res://.import/ground_chess.png-e92d6743b1d49ab155f8d111caf3cd33.stex" ]
 
 [params]
 

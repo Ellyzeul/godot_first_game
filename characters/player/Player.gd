@@ -1,24 +1,32 @@
-extends Sprite
+extends KinematicBody2D
 
-const Player = preload("res://scripts/lib_player.gd")
-var speed
-var velocity
-var font
+const Player = preload("res://characters/player/lib.gd")
+const Utils = preload("res://utils.gd")
+var life = 100
+var inventory = []
+var speed = 250
+var running = 1
+var sprint_duration = 0
+var sprint_cooldown = 0
+var velocity = Vector2()
+var collision_info
 
-func _ready():
-	speed = 5
-	velocity = Vector2()
+func _physics_process(delta):
+	sprint_cooldown = Player.get_sprint_cooldown(sprint_cooldown, delta)
 	
-	font = DynamicFont.new()
-	font.font_data = load("res://fonts/debug.ttf")
-	font.size = 20
+	if sprint_cooldown == 0 or sprint_duration != 0:
+		sprint_duration = Player.get_sprint_duration(delta, sprint_duration)
+		if sprint_duration > 0:
+			sprint_cooldown = 2
+	
+	running = Player.get_running(sprint_duration)
+	velocity = Player.get_velocity(speed, running)
+	
+	var _velocity = move_and_slide(velocity, Vector2.UP)
 
-func _process(delta):
-	velocity = Player.get_velocity(speed)
-	position = Player.set_position(position, velocity)
-	update()
+	var collisions = []
+	for i in get_slide_count():
+		collisions.append(get_slide_collision(i).collider)
 
-func _draw():
-	var msg_position = velocity
-	msg_position.y -= 32
-	draw_string(font, msg_position, "X: "+str(velocity.x)+" | Y: "+str(velocity.y))
+	var unique_collisions = Utils.filter_array_for_uniques(collisions)
+	Player.process_collisions(self, unique_collisions)
