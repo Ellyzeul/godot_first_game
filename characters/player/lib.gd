@@ -12,7 +12,7 @@ static func get_velocity(speed, running):
 
 static func get_running(sprint_time):
 	var running
-	if sprint_time > 0: running = 2.0
+	if sprint_time > 0: running = 8.0
 	elif Input.is_action_pressed("run"): running = 1.5
 	else: running = 1
 	
@@ -23,7 +23,7 @@ static func get_sprint_duration(delta, last_delta):
 	
 	if (
 		Input.is_action_just_pressed("sprint") or
-		(last_delta > 0 and last_delta <= 0.5)
+		(last_delta > 0 and last_delta <= 0.1)
 	): new_delta = delta + last_delta
 	else: new_delta = 0
 	

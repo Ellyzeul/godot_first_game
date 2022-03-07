@@ -10,7 +10,7 @@ static func filter_array_for_uniques(arr):
 			if new_arr[j] == arr[i]:
 				dup = true
 				break
-		print(arr[i])
+		
 		if !dup:
 			new_arr.append(arr[i])
 			new_arr_size+=1
