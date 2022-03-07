@@ -8,5 +8,8 @@ export_presets.cfg
 .mono/
 data_*/
 
+# FL Studio projects
+soundtack/*.flp
+
 # Releases
 releases/
